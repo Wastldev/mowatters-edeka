@@ -10,7 +10,7 @@
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/svg+xml" href="icon.svg" />
   <link rel="apple-touch-icon" href="icon.svg" />
-  <title>Stunden & Überstunden</title>
+  <title>Mowatters EDEKA - Stunden & Überstunden</title>
   <style>
     /* ==========================================================================
        Apple iOS 18 Human Interface Design System (Dark & Light)
@@ -1202,7 +1202,7 @@
       <div class="brand">
         <div class="edeka-icon">E</div>
         <div class="brand-text">
-          <h1>Arbeitsstunden</h1>
+          <h1>Mowatters EDEKA</h1>
           <p id="headerWageText">13,90 € / Std. · Limit 585,75 €</p>
         </div>
       </div>
@@ -1495,10 +1495,10 @@
   <div class="toast" id="toast">Gespeichert</div>
 
   <script>
-    const STORAGE_KEY = "edeka_stunden_tracker_v1";
-    const THEME_KEY = "edeka_theme_v1";
-    const CLOUD_BIN_URL = "https://extendsclass.com/api/json-storage/bin/cfafecd";
-    const NTFY_TOPIC = "edeka_sync_smotz_9f8a7b6c5d";
+    const STORAGE_KEY = "mowatters_edeka_tracker_v1";
+    const THEME_KEY = "mowatters_theme_v1";
+    const CLOUD_BIN_URL = "";
+    const NTFY_TOPIC = "mowatters_sync_" + Math.random().toString(36).substring(2, 12);
 
     const THEME_META_COLORS = {
       "dark": "#000000",
@@ -1551,43 +1551,11 @@
     function getInitialState() {
       return {
         updatedAt: 1,
+        theme: "pastel-blue",
         hourlyWage: 13.90,
         payoutCap: 585.75,
         selectedMonthId: "2026-11",
         months: [
-          {
-            id: "2026-08",
-            name: "August",
-            year: 2026,
-            status: "settled",
-            paidAmount: 0.00,
-            showPaidInNote: false,
-            entries: [
-              { id: "aug-1", label: "Monatsstunden August", date: "2026-08-31", hours: 10.0 }
-            ]
-          },
-          {
-            id: "2026-09",
-            name: "September",
-            year: 2026,
-            status: "settled",
-            paidAmount: 585.75,
-            showPaidInNote: true,
-            entries: [
-              { id: "sep-1", label: "Monatsstunden September", date: "2026-09-30", hours: 62.0 }
-            ]
-          },
-          {
-            id: "2026-10",
-            name: "Oktober",
-            year: 2026,
-            status: "settled",
-            paidAmount: 578.94,
-            showPaidInNote: true,
-            entries: [
-              { id: "oct-1", label: "Monatsstunden Oktober", date: "2026-10-31", hours: 23.5 }
-            ]
-          },
           {
             id: "2026-11",
             name: "November",
@@ -1595,12 +1563,7 @@
             status: "open",
             paidAmount: 0.00,
             showPaidInNote: false,
-            entries: [
-              { id: "nov-1", label: "Woche 1 (KW 45)", date: "2026-11-03", hours: 6.5 },
-              { id: "e-1794663590030", label: "Schicht 09:00–18:00 Uhr (60m Pause)", date: "2026-11-14", hours: 8.0 },
-              { id: "e-1794737929885", label: "Schicht 07:00–15:00 Uhr (30m Pause)", date: "2026-11-15", hours: 7.5 },
-              { id: "e-1794834661776", label: "Schicht 15:00–20:00 Uhr", date: "2026-11-16", hours: 5.0 }
-            ]
+            entries: []
           }
         ]
       };
@@ -1806,7 +1769,7 @@
     }
 
     function resetToDefaultData() {
-      if (confirm("Alle Daten auf den Ausgangsstand (August–November, Überstunden: 415,05 €) zurücksetzen?")) {
+      if (confirm("Alle Daten auf den Ausgangszustand zurücksetzen?")) {
         state = getInitialState();
         saveState();
         showToast("Daten zurückgesetzt");
